@@ -1,31 +1,39 @@
-// src/components/layout/TabBar.tsx
 import { NavLink } from 'react-router-dom';
-import './TabBar.css'; // 导航栏样式
+import { FaHome, FaPlus, FaUser } from 'react-icons/fa'; // 替换为需要的图标
 
-const TabBar = () => {
+export default function TabBar() {
   return (
-    <nav className="tab-bar">
-      <NavLink 
-        to="/" 
-        className={({ isActive }) => isActive ? "tab-item active" : "tab-item"}
-        end // 精确匹配根路由
+    <div className="fixed bottom-0 left-0 right-0 h-15 flex justify-around items-center bg-white border-t border-gray-200 z-50">
+      {/* 首页 Tab */}
+      <NavLink
+        to="/"
+        end
+        className={({ isActive }) =>
+          `flex flex-col items-center justify-center text-sm gap-1 ${isActive ? 'text-green-400' : 'text-gray-500'}`
+        }
       >
+        <FaHome size={20} />
         <span>首页</span>
       </NavLink>
-      <NavLink 
-        to="/add" 
-        className={({ isActive }) => isActive ? "tab-item active" : "tab-item"}
+
+      {/* 发布 Tab（中间突出按钮） */}
+      <NavLink
+        to="/add"
+        className="flex items-center justify-center w-12 h-12 rounded-full bg-green-400 text-white mb-5 shadow-md"
       >
-        <span>发布</span>
+        <FaPlus size={24} />
       </NavLink>
-      <NavLink 
-        to="/profile" 
-        className={({ isActive }) => isActive ? "tab-item active" : "tab-item"}
+
+      {/* 个人中心 Tab */}
+      <NavLink
+        to="/profile"
+        className={({ isActive }) =>
+          `flex flex-col items-center justify-center text-sm gap-1 ${isActive ? 'text-green-400' : 'text-gray-500'}`
+        }
       >
+        <FaUser size={20} />
         <span>我的</span>
       </NavLink>
-    </nav>
+    </div>
   );
-};
-
-export default TabBar;
+}

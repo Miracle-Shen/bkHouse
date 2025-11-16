@@ -1,30 +1,29 @@
-import { useState } from 'react'
-import { BrowserRouter, Routes, Route } from 'react-router-dom';
-import TabLayout from "./pages/_layout.tsx";
-
-// import Home from './pages/Home';
-// import Add from './pages/Add';
-// import Profile from './pages/Profile';
-// import NotFound from './pages/NotFound';
-import './App.css'
+import { useEffect } from 'react';
+import { GlobalContextProvider } from './context/GlobalContext';
+import AppRoutes from './routes/router';
 
 function App() {
-  const [count, setCount] = useState(0)
+  // 初始化操作（如主题设置、用户状态恢复等）
+  useEffect(() => {
+    // 可在这里添加 Web 端初始化逻辑（如检测深色模式偏好）
+    const initApp = async () => {
+      // 示例：从 localStorage 恢复主题设置
+      const savedTheme = localStorage.getItem('theme');
+      if (savedTheme) {
+        document.documentElement.classList.add(savedTheme);
+      }
+    };
+
+    initApp();
+  }, []);
 
   return (
-     <BrowserRouter>
-      <Routes>
-        {/* 嵌套路由：所有标签页页面都嵌套在 TabLayout 中 */}
-        <Route path="/" element={<TabLayout />}>
-          {/* <Route index element={<Home />} /> 
-          <Route path="add" element={<Add />} /> 
-          <Route path="profile" element={<Profile />} />  */}
-        </Route>
-
-        {/* <Route path="*" element={<NotFound />} /> */}
-      </Routes>
-    </BrowserRouter>
-  )
+    // 全局状态上下文包裹整个应用
+    <GlobalContextProvider>
+      {/* 路由容器 */}
+      <AppRoutes />
+    </GlobalContextProvider>
+  );
 }
 
-export default App
+export default App;
