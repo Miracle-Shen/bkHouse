@@ -8,10 +8,10 @@ import Profile from "../pages/tabs/profile.tsx";
 import Add from "../pages/tabs/add.tsx";
 import TabBar from "../component/layout/TabBar";
 const TabLayout = () => (
-  <>
-    <Outlet /> {/* 渲染子路由内容 */}
-    <TabBar /> {/* 底部导航栏 */}
-  </>
+  <div className="min-h-screen flex flex-col">
+    <Outlet className="flex-1" />
+    <TabBar />
+  </div>
 );
 
 const router = createBrowserRouter([

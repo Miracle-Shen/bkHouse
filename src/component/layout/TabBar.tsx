@@ -3,7 +3,7 @@ import { FaHome, FaPlus, FaUser } from 'react-icons/fa'; // 替换为需要的�
 
 export default function TabBar() {
   return (
-    <div className="fixed bottom-0 left-0 right-0 h-15 flex justify-around items-center bg-white border-t border-gray-200 z-50">
+    <div className="fixed bottom-0 left-0 right-0 h-15 flex-row justify-around items-center bg-green-100 border-t border-gray-200 z-50">
       {/* 首页 Tab */}
       <NavLink
         to="/"
